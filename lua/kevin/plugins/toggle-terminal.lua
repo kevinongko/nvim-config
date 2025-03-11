@@ -4,14 +4,14 @@ return {
   config = function()
     require("toggleterm").setup{
       -- General settings
+      open_mapping = [[<C-t>]],  -- Key mapping to toggle terminal
       shade_terminals = true,
       start_in_insert = true,
       persist_size = true,
       direction = "horizontal", -- Default direction
       float_opts = {
         border = "curved",
-      },
-      open_mapping = [[<C-t>]],  -- Key mapping to toggle terminal
+      }
     }
 
     -- Terminal window mapping
