@@ -37,7 +37,7 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        "eslint_d",
+        -- tool list
       },
     })
   end,
