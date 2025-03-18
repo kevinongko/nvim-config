@@ -30,7 +30,8 @@ return {
         "cssls",
         "lua_ls",
         "volar",
-        "rust_analyzer"
+        "rust_analyzer",
+        "denols"
       },
     })
 
