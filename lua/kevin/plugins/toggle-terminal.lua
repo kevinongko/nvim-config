@@ -4,7 +4,7 @@ return {
   config = function()
     require("toggleterm").setup{
       -- General settings
-      open_mapping = [[<C-t>]],  -- Key mapping to toggle terminal
+      open_mapping = [[<F3>]],
       shade_terminals = true,
       start_in_insert = true,
       persist_size = true,
