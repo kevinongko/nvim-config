@@ -12,10 +12,8 @@ return {
     -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
 
-    -- import cmp-nvim-lsp plugin
+    -- Basic LSP capabilities
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-    -- used to enable autocompletion (assign to every lsp server config)
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- Change the Diagnostic symbols in the sign column (gutter)
