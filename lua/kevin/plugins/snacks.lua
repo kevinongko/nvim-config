@@ -3,21 +3,18 @@ return {
   priority = 1000,
   lazy = false,
   keys = {
-    { "<F1>", function() require("snacks").picker.files() end, desc = "Toggle Picker" },
+    { "<F1>", function() require("snacks").picker.files() end, desc = "Toggle files picker" },
     { "<F3>", function() require("snacks").terminal.toggle() end, desc = "Toggle Terminal" },
     { "<F3>", function() require("snacks").terminal.toggle() end, mode = "t", desc = "Toggle Terminal" },
-    { "<F5>", function() require("snacks").explorer.open() end, desc = "Toggle Explorer" },
     { "<F6>", function() require("snacks").lazygit.open() end, desc = "Toggle Lazygit" },
     { "<leader>ff", function() require("snacks").picker.files() end, desc = "Find files in project" },
     { "<leader>fs", function() require("snacks").picker.grep() end, desc = "Find string in project" },
+    { "<leader>wj", function() require("snacks").words.jump(1) end, desc = "Jump references" },
   },
   opts = {
     bigfile = { enabled = true },
     dashboard = { enabled = true },
-    explorer = {
-      enabled = true,
-      replace_netrw = true
-    },
+    explorer = { enabled = false },
     indent = { enabled = true },
     input = { enabled = true },
     lazygit = { enabled = true },
@@ -40,7 +37,10 @@ return {
       enabled = true,
       shell = "nu"
     },
-    words = { enabled = true },
+    words = {
+      enabled = false,
+      notify_jump = true,
+    },
   }
 }
 
