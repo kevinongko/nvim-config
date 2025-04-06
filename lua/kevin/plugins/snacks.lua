@@ -38,11 +38,7 @@ return {
     statuscolumn = { enabled = true },
     terminal = {
       enabled = true,
-      shell = "nu",
-      win = {
-        position = "bottom",
-        height = 0.3
-      }
+      shell = "nu"
     },
     words = { enabled = true },
   }
