@@ -9,14 +9,25 @@ return {
     { "<F6>", function() require("snacks").lazygit.open() end, desc = "Toggle Lazygit" },
     { "<leader>ff", function() require("snacks").picker.files() end, desc = "Find files in project" },
     { "<leader>fs", function() require("snacks").picker.grep() end, desc = "Find string in project" },
-    { "<leader>wj", function() require("snacks").words.jump(1) end, desc = "Jump references" },
+    { "<leader>gb", function() require("snacks").git.blame_line() end, desc = "Git blame this line" },
   },
   opts = {
+    animate = { enabled = true },
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = {
+      enabled = true,
+        sections = {
+        { section = "header" },
+        { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+        { section = "startup" },
+      },
+    },
     explorer = { enabled = false },
     indent = { enabled = true },
     input = { enabled = true },
+    image = { enabled = true },
     lazygit = { enabled = true },
     picker = {
       enabled = true,
@@ -38,7 +49,7 @@ return {
       shell = "nu"
     },
     words = {
-      enabled = false,
+      enabled = true,
       notify_jump = true,
     },
   }
