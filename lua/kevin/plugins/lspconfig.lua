@@ -2,8 +2,8 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
+    "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
     -- import lspconfig plugin
@@ -72,10 +72,16 @@ return {
 
     -- Change the Diagnostic symbols in the sign column (gutter)
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = signs.Error,
+          [vim.diagnostic.severity.WARN] = signs.Warn,
+          [vim.diagnostic.severity.HINT] = signs.Hint,
+          [vim.diagnostic.severity.INFO] = signs.Info,
+        }
+      }
+    })
 
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
@@ -89,7 +95,7 @@ return {
           capabilities = capabilities,
           init_options = {
             typescript = {
-              tsdk = "/Users/Kevin/AppData/Local/nvim-data/mason/packages/vue-language-server/node_modules/typescript/lib/"
+              tsdk = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/typescript/lib/"
             }
           }
         })
@@ -113,8 +119,8 @@ return {
           root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
       })
       end,
-      ["ts_ls"] = function()
-        lspconfig["ts_ls"].setup({
+      ["vtsls"] = function()
+        lspconfig["vtsls"].setup({
           capabilities = capabilities,
           root_dir = lspconfig.util.root_pattern("package.json"),
           single_file_support = false, -- Disable for single files

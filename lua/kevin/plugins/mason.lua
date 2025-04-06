@@ -31,7 +31,8 @@ return {
         "lua_ls",
         "volar",
         "rust_analyzer",
-        "denols"
+        "denols",
+        "vtsls"
       },
     })
 

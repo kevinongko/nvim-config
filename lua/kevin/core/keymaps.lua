@@ -12,3 +12,6 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 keymap.set("n", "<leader>tj", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tk", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 keymap.set("n", "<leader>1", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+
+-- Disable F1 help key
+keymap.set({'n', 'i', 'v'}, '<F1>', '<Nop>', { noremap = true, silent = true })
