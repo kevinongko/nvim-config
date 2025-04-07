@@ -29,6 +29,9 @@ return {
       }
     })
 
+    local mason_registry = require('mason-registry')
+    local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
       function(server_name)
@@ -36,14 +39,24 @@ return {
           capabilities = capabilities,
         })
       end,
-      ["volar"] = function()
-        lspconfig["volar"].setup({
+      ["ts_ls"] = function()
+        lspconfig.ts_ls.setup({
           capabilities = capabilities,
           init_options = {
-            typescript = {
-              tsdk = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/typescript/lib/"
-            }
-          }
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vue_language_server_path,
+                languages = { "vue" },
+              },
+            },
+          },
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        })
+      end,
+      ["volar"] = function()
+        lspconfig["volar"].setup({
+          capabilities = capabilities
         })
       end,
       ["lua_ls"] = function()
@@ -59,19 +72,6 @@ return {
           },
         })
       end,
-      ["denols"] = function()
-        lspconfig["denols"].setup({
-          capabilities = capabilities,
-          root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc")
-      })
-      end,
-      ["vtsls"] = function()
-        lspconfig["vtsls"].setup({
-          capabilities = capabilities,
-          root_dir = lspconfig.util.root_pattern("package.json"),
-          single_file_support = false, -- Disable for single files
-      })
-      end
     })
   end,
 }

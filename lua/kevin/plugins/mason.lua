@@ -29,10 +29,9 @@ return {
         "html",
         "cssls",
         "lua_ls",
+        "ts_ls",
         "volar",
         "rust_analyzer",
-        "denols",
-        "vtsls"
       },
     })
 
