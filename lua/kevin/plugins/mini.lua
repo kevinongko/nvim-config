@@ -15,11 +15,13 @@ return {
     require('mini.trailspace').setup({
       only_in_normal_buffers = true
     })
+    -- auto delete trailing space on save
     vim.api.nvim_create_autocmd("BufWritePre", {
       callback = function()
         require('mini.trailspace').trim()
       end,
     })
+    -- disable mini.trailspace on snacks dashboard
     vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
       callback = function()
       local bufname = vim.fn.expand('%:t')
@@ -29,6 +31,6 @@ return {
          vim.b.minitrailspace_disable = true
       end
     end,
-  })
+    })
   end
 }
