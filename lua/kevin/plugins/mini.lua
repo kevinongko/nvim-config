@@ -7,7 +7,8 @@ return {
     require('mini.surround').setup()
     require('mini.comment').setup({
       mappings = {
-        comment_line = '<leader>cc'
+        comment_line = '<leader>cc',
+        comment_visual = '<leader>cc'
       }
     })
     require('mini.icons').setup()
@@ -15,22 +16,16 @@ return {
     require('mini.trailspace').setup({
       only_in_normal_buffers = true
     })
-    -- auto delete trailing space on save
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      callback = function()
-        require('mini.trailspace').trim()
-      end,
-    })
     -- disable mini.trailspace on snacks dashboard
-    vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
       callback = function()
-      local bufname = vim.fn.expand('%:t')
-      if bufname == "" or -- empty buffer
-         string.match(vim.api.nvim_buf_get_name(0), "Snacks") or
-         vim.bo.filetype == "snacks" then
-         vim.b.minitrailspace_disable = true
-      end
-    end,
+        local bufname = vim.fn.expand('%:t')
+        if bufname == "" or -- empty buffer
+            string.match(vim.api.nvim_buf_get_name(0), "Snacks") or
+            vim.bo.filetype == "snacks" then
+          vim.b.minitrailspace_disable = true
+        end
+      end,
     })
   end
 }

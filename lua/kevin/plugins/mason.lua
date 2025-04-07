@@ -37,7 +37,9 @@ return {
 
     mason_tool_installer.setup({
       ensure_installed = {
-        -- tool list
+        "oxlint",
+        "prettierd",
+        "stylua"
       },
     })
   end,

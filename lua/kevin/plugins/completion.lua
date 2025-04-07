@@ -2,12 +2,12 @@ return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-buffer", -- source from text in buffer
-    "hrsh7th/cmp-path", -- source from file system paths
-    "onsails/lspkind.nvim", -- pictograms
+    "hrsh7th/cmp-buffer",              -- source from text in buffer
+    "hrsh7th/cmp-path",                -- source from file system paths
+    "onsails/lspkind.nvim",            -- pictograms
     "nvim-treesitter/nvim-treesitter", -- needed for the tag detection
   },
-  config = function ()
+  config = function()
     local cmp = require("cmp")
     local lspkind = require("lspkind")
 
@@ -28,8 +28,6 @@ return {
         {
           name = "nvim_lsp",
           -- Filter LSP completions for Vue template attributes
-          ---@param entry cmp.Entry
-          ---@param ctx cmp.Context
           entry_filter = function(entry, ctx)
             -- Only apply filtering for Vue files
             if ctx.filetype ~= 'vue' then
@@ -46,7 +44,7 @@ return {
             -- For events (starting with @)
             if cursor_before_line:sub(-1) == '@' then
               return entry.completion_item.label:match('^@')
-            -- For props (starting with :) - exclude events with `:on-` prefix
+              -- For props (starting with :) - exclude events with `:on-` prefix
             elseif cursor_before_line:sub(-1) == ':' then
               return entry.completion_item.label:match('^:') and not entry.completion_item.label:match('^:on%-')
             else
