@@ -29,6 +29,27 @@ return {
 					},
 					{
 						function()
+							-- For nvim-lint linters
+							local ok, lint = pcall(require, "lint")
+							if not ok then
+								return ""
+							end
+
+							local ft = vim.bo.filetype
+							local linters = lint.linters_by_ft[ft]
+							if not linters or #linters == 0 then
+								return ""
+							end
+
+							local linters_str = "󰁯 " -- Linter icon
+							for _, linter in ipairs(linters) do
+								linters_str = linters_str .. linter .. ", "
+							end
+							return linters_str:sub(1, -3) -- Remove trailing comma
+						end,
+					},
+					{
+						function()
 							-- For conform.nvim formatters
 							local ok, conform = pcall(require, "conform")
 							if not ok then
