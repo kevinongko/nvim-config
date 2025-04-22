@@ -4,7 +4,8 @@ return {
 	dependencies = "nvim-tree/nvim-web-devicons",
 	opts = {
 		options = {
-			separator_style = "thin",
+			mode = "tabs",
+			separator_style = "slant",
 		},
 	},
 }

@@ -4,7 +4,7 @@ return {
 	priority = 1000,
 	opts = {
 		style = "night", -- Choose: "storm", "moon", "night", "day"
-		transparent = true, -- Enable this for transparent background
+		transparent = false, -- Enable this for transparent background
 		terminal_colors = true, -- Set terminal colors
 		styles = {
 			sidebars = "transparent",
