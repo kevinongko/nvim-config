@@ -20,8 +20,8 @@ return {
 
 			-- Set up linters by filetype
 			require("lint").linters_by_ft = {
-				javascript = { "oxlint", "eslint_d" },
-				typescript = { "oxlint", "eslint_d" },
+				javascript = { "oxlint" },
+				typescript = { "oxlint" },
 			}
 
 			-- Optional: create autocmd to run lint on specific events
